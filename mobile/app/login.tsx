@@ -1,7 +1,7 @@
 import { Link } from "expo-router";
 import { useState } from "react";
 
-import { TextInput, View, TouchableOpacity, TouchableWithoutFeedback, StyleSheet, Text, Image } from "react-native";
+import { TextInput, View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
 
 const Login = () => {
 
@@ -48,6 +48,10 @@ const Login = () => {
 							<Text style={styles.submitText}>Sign In</Text>
 						</Link>
 					</TouchableOpacity>
+
+					<Link href={'/signup'} style={styles.signup}>
+						<Text>Sign Up</Text>
+					</Link>
 				</View>
 			</View>
 		</>
@@ -66,8 +70,7 @@ const styles = StyleSheet.create({
 	},
 
 	img: {
-		width: 350,
-		height: 350,
+		width: 250,
 		marginBottom: 50
 	},
 	h1: {
@@ -130,6 +133,11 @@ const styles = StyleSheet.create({
 		color: "white",
 		fontSize: 23,
 		fontWeight: "bold"
+	},
+	signup: {
+		color: "orange",
+		marginTop: 25,
+		fontSize: 20
 	}
 })
 

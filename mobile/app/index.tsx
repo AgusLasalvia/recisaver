@@ -8,9 +8,12 @@ import {
 	Image
 } from "react-native";
 
+
 import { Link } from "expo-router";
 
-const LoginScreen = () => {
+
+
+const WelcomeScreen = () => {
 	return (
 		<TouchableWithoutFeedback>
 			<View style={style.container}>
@@ -80,4 +83,4 @@ const style = StyleSheet.create({
 	}
 })
 
-export default LoginScreen;
+export default WelcomeScreen;
