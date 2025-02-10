@@ -1,4 +1,6 @@
+import { Link } from "expo-router";
 import { useState } from "react";
+
 import { TextInput, View, TouchableOpacity, TouchableWithoutFeedback, StyleSheet, Text, Image } from "react-native";
 
 const Login = () => {
@@ -42,9 +44,9 @@ const Login = () => {
 						/>
 					</View>
 					<TouchableOpacity style={styles.submitBtn}>
-						<Text style={styles.submitText}>
-							Sign In
-						</Text>
+						<Link href={"/(tabs)/home"}>
+							<Text style={styles.submitText}>Sign In</Text>
+						</Link>
 					</TouchableOpacity>
 				</View>
 			</View>
