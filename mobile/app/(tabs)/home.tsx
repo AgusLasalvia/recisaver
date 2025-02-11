@@ -5,9 +5,9 @@ import { StyleSheet, View, TextInput, ScrollView } from "react-native"
 
 // Delete this after DB implementation
 const food = [
-	{ title: "pizza", img: require("@assets/images/food/pizza.png"), id: 1 },
-	{ title: "pasta", img: require("@assets/images/food/pasta.png"), id: 2 },
-	{ title: "salad", img: require("@assets/images/food/salad.png"), id: 3 },
+	{ title: "Pizza", img: require("@assets/images/food/pizza.png"), id: 1 },
+	{ title: "Chocolate Fudge Cake", img: require("@assets/images/food/pasta.png"), id: 2 },
+	{ title: "Tomato Basil Pasta", img: require("@assets/images/food/salad.png"), id: 3 },
 	{ title: "pizza", img: require("@assets/images/food/pizza.png"), id: 1 },
 	{ title: "pasta", img: require("@assets/images/food/pasta.png"), id: 2 },
 
@@ -15,7 +15,7 @@ const food = [
 
 
 
-const Home = () => {
+const HomePage = () => {
 
 	const [search, setSearch] = useState("")
 
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Home;
+export default HomePage;

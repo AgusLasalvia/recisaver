@@ -11,7 +11,7 @@ const RecipeItem = (params: RecipeItemProp) => {
 	return (
 		<View style={styles.contentContainer}>
 			<Image source={params.img} style={styles.img} />
-			<Text style={styles.title}>{params.title}</Text>
+			<Text style={styles.title} numberOfLines={2}>{params.title}</Text>
 			<TouchableOpacity style={styles.details}>
 				<Link href={`/(tabs)/home?id=${params.id}`}>
 					<Text style={styles.text}>Details</Text>
@@ -21,7 +21,6 @@ const RecipeItem = (params: RecipeItemProp) => {
 	)
 };
 
-
 const styles = StyleSheet.create({
 	contentContainer: {
 		backgroundColor: "#1d1d1d",
@@ -30,8 +29,8 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginTop: 25,
 		width: "80%",
-		height: 340,
-		borderRadius: 30
+		borderRadius: 30,
+		paddingBottom: 20, // Agrega un poco de espacio abajo para evitar que el contenido toque el borde
 	},
 	img: {
 		width: "100%",
@@ -46,7 +45,9 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		fontSize: 30,
 		color: "white",
-		fontWeight: "bold"
+		fontWeight: "bold",
+		flexShrink: 1, // Hace que el texto se reduzca si es necesario
+		overflow: 'hidden', // Evita que el texto se desborde
 	},
 	details: {
 		backgroundColor: "#ff9c2a",
@@ -62,9 +63,6 @@ const styles = StyleSheet.create({
 		color: "white",
 		fontSize: 19
 	}
-
-
 })
-
 
 export default RecipeItem;
