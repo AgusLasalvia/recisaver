@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 		marginRight: 10
 	},
 	btnsContainer: {
-		marginTop: 20,
+		marginTop: 12,
 		display: "flex",
 		flexDirection: "row",
 		gap: 10
