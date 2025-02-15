@@ -1,4 +1,5 @@
 HELLO THERE 👋
+
 My name is Agustin, and this is my first mobile app! 🚀
 
 For this project, I decided to use React Native for the frontend and NestJS for the backend.
