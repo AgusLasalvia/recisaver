@@ -1,0 +1,11 @@
+CLIENT:
+- Finish add recipe menu UI
+
+DATABASE:
+- Create Food & Ingredients table in sql
+- Create user & credentials for Firebase Storage
+
+SERVER:
+- Test existing endpoints
+- Add Firebase Storage integration
+- Test IMG storage function 
