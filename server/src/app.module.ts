@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './user/user.model';
-import { AuthModule } from './auth/auth.module';
-import { User } from './user/user.entity';
-import { AppController } from './app.controller';
+
+// Providers
 import { AppService } from './app.service';
+
+// Controllers
+import { AppController } from './app.controller';
+
+// Modules
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { RecipeModule } from './recipe/recipe.module';
+
+// Entitys
+import { Recipe } from './recipe/recipe.entity';
+import { User } from './user/user.entity';
 
 
 @Module({
@@ -16,11 +26,12 @@ import { AppService } from './app.service';
 			username: process.env.DB_USER,
 			password: process.env.DB_PASS,
 			database: process.env.DB_NAME,
-			entities: [User],
+			entities: [User, Recipe],
 			synchronize: true,
 		}),
 		UserModule,
 		AuthModule,
+		RecipeModule
 	],
 	controllers: [AppController],
 	providers: [AppService],
