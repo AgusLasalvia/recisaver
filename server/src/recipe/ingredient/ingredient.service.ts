@@ -32,9 +32,9 @@ export class IngredientService {
 		return ingredient;
 	}
 
-	async update(id: number, updateIngredientDto: Ingredient): Promise<Ingredient> {
+	async update(id: number, updatedData: Ingredient): Promise<Ingredient> {
 		const ingredient = await this.findOne(id);
-		Object.assign(ingredient, updateIngredientDto);
+		Object.assign(ingredient, updatedData);
 		return this.ingredientRepository.save(ingredient);
 	}
 

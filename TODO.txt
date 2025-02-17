@@ -1,8 +1,8 @@
 CLIENT:
-- Finish add recipe menu UI
+- Finish add recipe menu UI ✅
 
 DATABASE:
-- Create Food & Ingredients table in sql
+- Create Food table in sql
 - Create user & credentials for Firebase Storage
 
 SERVER:

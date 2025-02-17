@@ -10,4 +10,5 @@ import { IngredientController } from './ingredient.controller';
   providers: [IngredientService],
   exports: [IngredientService],
 })
+
 export class IngredientModule {}
