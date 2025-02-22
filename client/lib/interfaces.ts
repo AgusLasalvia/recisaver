@@ -3,10 +3,11 @@ export interface ILogin {
 	password: string
 }
 
-export interface User {
-	id: number,
+export interface IUser {
+	id: number | null | undefined,
 	username: string,
-	password: string
+	password: string,
+	email: string
 }
 
 export interface IRecipe {

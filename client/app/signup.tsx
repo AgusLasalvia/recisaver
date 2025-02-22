@@ -1,20 +1,51 @@
 import { Link } from "expo-router";
 import { TouchableOpacity, StyleSheet, View, Text, TextInput, Image } from "react-native";
-
+import { SignInForm } from "@/lib/forms";
+import { useState } from "react";
+import { submitSignUp } from "@/lib/fetch";
 
 const SignUp = () => {
+	const [form, setForm] = useState(SignInForm);
+
+	const handdleSubmit = async () => {
+		const response = await submitSignUp(form)
+		if (response != undefined)
+			alert("User Created Successfuly")
+		else
+			alert("Unable To Create The User")
+	}
+
 	return (
 
 		<View style={styles.mainContainer}>
 			<Image source={require('@assets/images/signup.png')} style={styles.img} />
 
 			<View style={styles.inputContainer}>
-				<TextInput style={styles.input} placeholder="Email" dataDetectorTypes={"address"} placeholderTextColor={"#5d646e"} />
-				<TextInput style={styles.input} placeholder="Username" maxLength={20} placeholderTextColor={"#5d646e"} />
-				<TextInput style={styles.input} placeholder="Password" maxLength={16} placeholderTextColor={"#5d646e"} secureTextEntry />
+				<TextInput
+					style={styles.input}
+					placeholder="Email"
+					dataDetectorTypes={"address"}
+					placeholderTextColor={"#5d646e"}
+					onChangeText={(value: string) => { setForm({ ...form, email: value }) }}
+				/>
+				<TextInput
+					style={styles.input}
+					placeholder="Username"
+					maxLength={20}
+					placeholderTextColor={"#5d646e"}
+					onChangeText={(value: string) => { setForm({ ...form, username: value }) }}
+				/>
+				<TextInput
+					style={styles.input}
+					placeholder="Password"
+					maxLength={16}
+					placeholderTextColor={"#5d646e"}
+					secureTextEntry
+					onChangeText={(value: string) => { setForm({ ...form, password: value }) }}
+				/>
 			</View>
 
-			<TouchableOpacity style={styles.submitBtn}>
+			<TouchableOpacity style={styles.submitBtn} onPress={handdleSubmit}>
 				<Text style={styles.submitText}>Register</Text>
 			</TouchableOpacity>
 

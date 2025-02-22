@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Recipe } from "@/lib/forms";
+import { RecipeForm } from "@/lib/forms";
 import { View, TouchableOpacity, Text, StyleSheet, Image, TextInput, ScrollView } from "react-native";
 import { type MediaType, launchImageLibraryAsync, requestMediaLibraryPermissionsAsync } from 'expo-image-picker';
 
 const AddRecipePage = () => {
-	const [addForm, setAddForm] = useState(Recipe)
+	const [addForm, setAddForm] = useState(RecipeForm)
 
 	const mediatype: MediaType = "images"
-
+	console.log(addForm)
 	const pickImage = async () => {
 		const permissionResult = await requestMediaLibraryPermissionsAsync();
 		if (permissionResult.granted === false) {
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
 		height: 150,
 		borderRadius: 20,
 		paddingLeft: 18,
+		paddingTop: 15,
 		color: "white",
 		textAlignVertical: "top"
 	},

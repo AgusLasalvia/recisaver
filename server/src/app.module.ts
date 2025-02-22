@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import * as dotenv from "dotenv"
+dotenv.config()
+
 // Providers
 import { AppService } from './app.service';
 
@@ -16,12 +19,11 @@ import { RecipeModule } from './recipe/recipe.module';
 import { Recipe } from './recipe/recipe.entity';
 import { User } from './user/user.entity';
 
-
 @Module({
 	imports: [
 		TypeOrmModule.forRoot({
 			type: 'mysql',
-			host: process.env.DB_HOST || '127.0.0.1',
+			host: process.env.DB_HOST,
 			port: Number(process.env.DB_PORT),
 			username: process.env.DB_USER,
 			password: process.env.DB_PASS,
