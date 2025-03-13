@@ -16,5 +16,10 @@ export interface IRecipe {
 	title: string,
 	description: string,
 	instructions: string,
-	imgUrl: string
+	file: {
+		imgUrl: string,
+		name: string,
+		type: string
+	}
+
 }

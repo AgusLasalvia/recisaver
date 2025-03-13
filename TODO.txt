@@ -2,10 +2,10 @@ CLIENT:
 - Finish add recipe menu UI ✅
 
 DATABASE:
-- Create Food table in sql
-- Create user & credentials for Firebase Storage
+- Create Food table in sql ✅
+- Create user & credentials for Firebase Storage ❌ -> review this
 
 SERVER:
-- Test existing endpoints
-- Add Firebase Storage integration
-- Test IMG storage function 
+- Test existing endpoints 🔷 -> on progress
+- Add Firebase Storage integration ❌ -> failed
+- Test IMG storage function ❌ -> failed

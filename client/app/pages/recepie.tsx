@@ -1,5 +1,5 @@
 const RecipePage = () => {
-	return (<></>)
+  return (<></>)
 };
 
 export default RecipePage;

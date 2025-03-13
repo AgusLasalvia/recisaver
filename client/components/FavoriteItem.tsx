@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 	},
 	btnRemove: {
 		width: 90,
-		marginLeft:5,
+		marginLeft: 5,
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
