@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
 		marginTop: 30,
 		borderRadius: 30,
 		paddingLeft: 20,
-		color: "orange"
+		color: "orange",
+		position:"sticky"
 	},
 
 })

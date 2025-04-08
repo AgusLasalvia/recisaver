@@ -3,6 +3,8 @@ import { TouchableOpacity, StyleSheet, View, Text, TextInput, Image } from "reac
 import { SignInForm } from "@/lib/forms";
 import { useState } from "react";
 import { submitSignUp } from "@/lib/fetch";
+import FloatingImage from "@/components/Animations/FloatingImage";
+import GlobalView from "@/components/GlobalView";
 
 const SignUp = () => {
 	const [form, setForm] = useState(SignInForm);
@@ -17,8 +19,14 @@ const SignUp = () => {
 
 	return (
 
-		<View style={styles.mainContainer}>
-			<Image source={require('@assets/images/signup.png')} style={styles.img} />
+		<GlobalView style={styles.mainContainer}>
+
+			<FloatingImage
+				source={require('@assets/images/signup.png')}
+				style={{ width: 250, height: 250, marginBottom: 30 }}
+				resizeMode="contain"
+			/>
+
 
 			<View style={styles.inputContainer}>
 				<TextInput
@@ -52,7 +60,7 @@ const SignUp = () => {
 			<Link href={"/login"} style={styles.login}><Text>LogIn</Text></Link>
 
 
-		</View>
+		</GlobalView>
 
 
 	)

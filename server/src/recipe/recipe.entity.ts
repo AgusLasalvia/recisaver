@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column,OneToMany } from 'typeorm';
+import { Favorite } from '../favorite/favorite.entity';  // Asumiendo que tienes una entidad de Favorite
 
 @Entity()
 export class Recipe {
@@ -19,4 +20,7 @@ export class Recipe {
 
   @Column()
   imgUrl: string;
+
+	@OneToMany(() => Favorite, favorite => favorite.user)  // Relación inversa con Favorite
+  favorites: Favorite[];
 }

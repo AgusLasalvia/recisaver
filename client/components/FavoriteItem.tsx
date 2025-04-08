@@ -17,7 +17,7 @@ const FavoriteItem = (props: FavoriteItemProps) => {
 					<View style={styles.btnsContainer}>
 
 						<TouchableOpacity style={styles.btnView}>
-							<Link href={`/pages/recepie?id=${props.id}`} >
+							<Link href={`/pages/recipe?id=${props.id}`} >
 								<Text style={styles.btnText}>View</Text>
 							</Link>
 						</TouchableOpacity >
