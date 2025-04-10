@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
 		maxWidth: 450
 	},
 	img: {
-		width: 100, // Ancho fijo
-		height: 100, // Alto fijo, igual al ancho para mantener el círculo
-		borderRadius: 50, // Mitad del tamaño de la imagen para hacerla un círculo
+		width: 100,
+		height: 100, 
+		borderRadius: 50, 
 		marginRight: 10
 	},
 	btnsContainer: {

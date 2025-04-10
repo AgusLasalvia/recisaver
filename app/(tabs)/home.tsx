@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
 	searchBar: {
 		backgroundColor: "#2b2b2b",
 		height: 50,
-		width: 250,
+		width:"70%",
+		maxWidth: 500,
 		marginTop: 30,
 		borderRadius: 30,
 		paddingLeft: 20,

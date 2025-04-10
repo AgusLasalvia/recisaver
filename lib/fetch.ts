@@ -9,7 +9,7 @@ export const submitLogin = async (form: Interface.ILogin) => {
 		return;
 	}
 
-	const response = await fetch(`http://localhost:5050/auth/platform`, {
+	const response = await fetch(`http://10.226.51.60:5050/auth/login`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

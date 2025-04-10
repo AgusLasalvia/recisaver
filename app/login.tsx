@@ -8,6 +8,7 @@ import { TextInput, View, TouchableOpacity,
 	, Animated, Easing, ScrollView } from "react-native";
 import FloatingImage from "@/components/Animations/FloatingImage";
 import GlobalView from "@/components/GlobalView";
+import CustomBottomSheet from "@/components/BottomSheet";
 
 const Login = () => {
 
@@ -101,6 +102,11 @@ const Login = () => {
 						<Text style={styles.signup}>Sign Up</Text>
 					</TouchableOpacity>
 				</View>
+				<CustomBottomSheet>
+					<Text>
+						Test
+					</Text>
+				</CustomBottomSheet>
 			</ScrollView>
 		</GlobalView>
 	);
