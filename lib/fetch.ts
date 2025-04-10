@@ -9,21 +9,26 @@ export const submitLogin = async (form: Interface.ILogin) => {
 		return;
 	}
 
-	const response = await fetch(`http://10.226.51.60:5050/auth/login`, {
+	const response = await fetch(`${API_URL}/auth/login`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		
+
 		body: JSON.stringify({
 			username: form.username,
 			password: form.password
 		})
-		
+
 	});
 
+	if (response.status == 404) {
+		return null;
+	}
 
 	return await response.json();
+
+
 };
 
 
@@ -40,9 +45,10 @@ export const submitSignUp = async (form: Interface.IUser) => {
 		}),
 	});
 
-	if (!response.ok) {
-		alert("error")
+	if (response.status == 404) {
+		return null
 	}
+	return await response.json();
 }
 
 
@@ -54,20 +60,20 @@ export const submitNewRecipe = async (form: Interface.IRecipe) => {
 	formData.append('description', form.description);
 	formData.append('instructions', form.instructions);
 
-	if (form.file.imgUrl) {
-		const file = {
-			uri: form.file.imgUrl,
-			name: form.file.name || 'image.jpg',
-			type: form.file.type || 'image/jpeg',
-		};
+	// if (form.file.imgUrl) {
+	// 	const file = {
+	// 		uri: form.file.imgUrl,
+	// 		name: form.file.name || 'image.jpg',
+	// 		type: form.file.type || 'image/jpeg',
+	// 	};
 
-		formData.append('file', file as any);
-	}
+	// 	formData.append('file', file as any);
+	// }
 
-	// Verificamos todo lo que hay en formData
-	for (let pair of formData.entries()) {
-		console.log(`${pair[0]}: ${JSON.stringify(pair[1])}`);
-	}
+	// // Verificamos todo lo que hay en formData
+	// for (let pair of formData.entries()) {
+	// 	console.log(`${pair[0]}: ${JSON.stringify(pair[1])}`);
+	// }
 
 	try {
 		const response = await fetch(`${API_URL}/recipe/new`, {

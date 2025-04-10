@@ -13,17 +13,26 @@ const TabLayout = () => {
 				tabBarActiveTintColor: "orange", tabBarStyle: styles.tabBar, tabBarItemStyle: styles.item,
 			}}>
 				<Tabs.Screen name="home" options={{
-					title: "Home", headerShown: false, tabBarIcon: ({ focused, color, size }) => {
+					animation: "shift",
+					title: "Home",
+					headerShown: false,
+					tabBarIcon: ({ focused, color, size }) => {
 						return <AntDesign name="home" size={size} color={color} focused={focused ? "orange" : color} />;
 					}
 				}} />
 				<Tabs.Screen name="addRecipe" options={{
-					title: "Add", headerShown: false, tabBarIcon: ({ focused, color, size }) => {
+					animation: 'shift',
+					title: "Add",
+					headerShown: false,
+					tabBarIcon: ({ focused, color, size }) => {
 						return <FontAwesome6 name="add" size={size} color={color} focused={focused ? "orange" : color} />;
 					}
 				}} />
 				<Tabs.Screen name="favorite" options={{
-					title: "Favorite", headerShown: false, tabBarIcon: ({ focused, color, size }) => {
+					animation: "shift",
+					title: "Favorite",
+					headerShown: false,
+					tabBarIcon: ({ focused, color, size }) => {
 						return <Fontisto name="favorite" size={size} color={color} focused={focused ? "orange" : color} />;
 					}
 				}} />

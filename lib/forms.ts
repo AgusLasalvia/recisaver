@@ -6,7 +6,6 @@ export const LoginForm: Interfaces.ILogin = {
 }
 
 export const SignInForm: Interfaces.IUser = {
-	id: null,
 	username: "",
 	password: "",
 	email: ""

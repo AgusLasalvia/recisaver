@@ -7,7 +7,7 @@
 		"icon": "./assets/images/icon.png",
 		"scheme": "myapp",
 		"extra": {
-			"API_URL": "http://10.226.51.60:5050",
+			"API_URL": "https://recisaver-server-production.up.railway.app",
 			"eas": {
 				"projectId": "d3a8ab7e-19b7-47c6-b6a4-11e8a4d7f9dc"
 			}

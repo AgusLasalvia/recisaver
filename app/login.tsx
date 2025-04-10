@@ -1,16 +1,22 @@
+import FloatingImage from "@/components/Animations/FloatingImage";
 import { useEffect, useRef, useState } from "react";
+import GlobalView from "@/components/GlobalView";
+import { submitLogin } from "@/lib/fetch";
 import { useRouter } from "expo-router";
 import { LoginForm } from "@/lib/forms";
-import { submitLogin } from "@/lib/fetch";
+import CustomAlert from "@/components/Alert";
 
-import { TextInput, View, TouchableOpacity,
-	 StyleSheet, Text, KeyboardAvoidingView
-	, Animated, Easing, ScrollView } from "react-native";
-import FloatingImage from "@/components/Animations/FloatingImage";
-import GlobalView from "@/components/GlobalView";
-import CustomBottomSheet from "@/components/BottomSheet";
+import {
+	TextInput, View, TouchableOpacity,
+	StyleSheet, Text, KeyboardAvoidingView
+	, Animated, Easing, ScrollView
+} from "react-native";
+
+
+// import CustomBottomSheet from "@/components/BottomSheet";
 
 const Login = () => {
+
 
 	const floatAnim = useRef(new Animated.Value(0)).current;
 
@@ -35,16 +41,30 @@ const Login = () => {
 
 
 	const [login, setLogin] = useState(LoginForm);
+	const [alertMessage, setAlertMessage] = useState("")
+	const [alertVisible, setAlertVisible] = useState(false);
 
 	const router = useRouter();
 
 	const handleLogin = async () => {
 		// Aquí puedes agregar lógica de autenticación
-		const response = await submitLogin(login)
-		if (response.status == 404)
-			alert("User Not Found")
-		else
-			router.push("/(tabs)/home");
+		const response = await submitLogin(login);
+		console.log(response)
+		if (response == null) {
+			setAlertMessage("User Not Found");
+			setAlertVisible(true);
+		}
+		else if (response !== undefined) {
+			setAlertMessage("Login Success ...  Redirecting to Home");
+			setAlertVisible(true);
+			setTimeout(() => {
+				router.push("/home")
+			}, 2000)
+
+		} else {
+			setAlertMessage("Server Error");
+			setAlertVisible(true);
+		}
 	};
 
 	return (
@@ -102,11 +122,8 @@ const Login = () => {
 						<Text style={styles.signup}>Sign Up</Text>
 					</TouchableOpacity>
 				</View>
-				<CustomBottomSheet>
-					<Text>
-						Test
-					</Text>
-				</CustomBottomSheet>
+				<CustomAlert visible={alertVisible} onClose={() => setAlertVisible(false)} message={alertMessage} />
+
 			</ScrollView>
 		</GlobalView>
 	);
@@ -114,7 +131,7 @@ const Login = () => {
 
 const styles = StyleSheet.create({
 	container: {
-    backgroundColor: "#161616", // esto es esencial
+		backgroundColor: "#161616", // esto es esencial
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
@@ -151,9 +168,9 @@ const styles = StyleSheet.create({
 	input: {
 		marginTop: 20,
 		width: 270,
-		height: 60,
+		height: 55,
 		backgroundColor: "#2b2b2b",
-		borderRadius: 30,
+		borderRadius: 10,
 		paddingLeft: 20,
 		fontSize: 20,
 		color: "white"
@@ -166,7 +183,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#ff9c2a",
 		width: 270,
 		height: 60,
-		borderRadius: 30
+		borderRadius: 10
 	},
 	submitText: {
 		color: "white",
@@ -175,7 +192,7 @@ const styles = StyleSheet.create({
 	},
 	signup: {
 		color: "orange",
-		marginTop: 25,
+		marginTop: 45,
 		fontSize: 20
 	}
 });

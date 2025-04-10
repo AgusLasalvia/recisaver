@@ -5,28 +5,31 @@ import { useState } from "react";
 import { submitSignUp } from "@/lib/fetch";
 import FloatingImage from "@/components/Animations/FloatingImage";
 import GlobalView from "@/components/GlobalView";
+import CustomAlert from "@/components/Alert";
 
 const SignUp = () => {
 	const [form, setForm] = useState(SignInForm);
+	const [alertVisible, setAlertVisible] = useState(false);
+	const [alertMessage, setAlertMessage] = useState("");
+
 
 	const handdleSubmit = async () => {
-		const response = await submitSignUp(form)
-		if (response != undefined)
-			alert("User Created Successfuly")
-		else
-			alert("Unable To Create The User")
-	}
+		const response = await submitSignUp(form);
+		if (response !== undefined) {
+			setAlertMessage("User Created Successfully");
+		} else {
+			setAlertMessage("Unable To Create The User");
+		}
+		setAlertVisible(true);
+	};
 
 	return (
-
 		<GlobalView style={styles.mainContainer}>
-
 			<FloatingImage
 				source={require('@assets/images/signup.png')}
 				style={{ width: 250, height: 250, marginBottom: 30 }}
 				resizeMode="contain"
 			/>
-
 
 			<View style={styles.inputContainer}>
 				<TextInput
@@ -34,14 +37,14 @@ const SignUp = () => {
 					placeholder="Email"
 					dataDetectorTypes={"address"}
 					placeholderTextColor={"#5d646e"}
-					onChangeText={(value: string) => { setForm({ ...form, email: value }) }}
+					onChangeText={(value: string) => setForm({ ...form, email: value })}
 				/>
 				<TextInput
 					style={styles.input}
 					placeholder="Username"
 					maxLength={20}
 					placeholderTextColor={"#5d646e"}
-					onChangeText={(value: string) => { setForm({ ...form, username: value }) }}
+					onChangeText={(value: string) => setForm({ ...form, username: value })}
 				/>
 				<TextInput
 					style={styles.input}
@@ -49,7 +52,7 @@ const SignUp = () => {
 					maxLength={16}
 					placeholderTextColor={"#5d646e"}
 					secureTextEntry
-					onChangeText={(value: string) => { setForm({ ...form, password: value }) }}
+					onChangeText={(value: string) => setForm({ ...form, password: value })}
 				/>
 			</View>
 
@@ -57,15 +60,18 @@ const SignUp = () => {
 				<Text style={styles.submitText}>Register</Text>
 			</TouchableOpacity>
 
-			<Link href={"/login"} style={styles.login}><Text>LogIn</Text></Link>
+			<Link href={"/login"} style={styles.login}>
+				<Text>LogIn</Text>
+			</Link>
 
+			<CustomAlert
+				visible={alertVisible}
+				message={alertMessage}
+				onClose={() => setAlertVisible(false)} />
 
 		</GlobalView>
-
-
-	)
-}
-
+	);
+};
 
 const styles = StyleSheet.create({
 	mainContainer: {
@@ -91,9 +97,9 @@ const styles = StyleSheet.create({
 	input: {
 		marginTop: 30,
 		width: 270,
-		height: 60,
+		height: 55,
 		backgroundColor: "#2b2b2b",
-		borderRadius: 30,
+		borderRadius: 10,
 		paddingLeft: 20,
 		fontSize: 20,
 		color: "white"
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#ff9c2a",
 		width: 270,
 		height: 60,
-		borderRadius: 30
+		borderRadius: 10
 	},
 	submitText: {
 		color: "white",
@@ -115,9 +121,44 @@ const styles = StyleSheet.create({
 	},
 	login: {
 		color: "orange",
-		marginTop: 25,
+		marginTop: 40,
 		fontSize: 20
+	},
+	modalOverlay: {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundColor: "rgba(0,0,0,0.6)",
+		justifyContent: "center",
+		alignItems: "center",
+		zIndex: 10
+	},
+	alertBox: {
+		backgroundColor: "#2b2b2b",
+		padding: 30,
+		borderRadius: 15,
+		width: 280,
+		alignItems: "center"
+	},
+	alertText: {
+		color: "white",
+		fontSize: 18,
+		textAlign: "center",
+		marginBottom: 20
+	},
+	alertButton: {
+		backgroundColor: "#ff9c2a",
+		paddingHorizontal: 30,
+		paddingVertical: 10,
+		borderRadius: 10
+	},
+	alertButtonText: {
+		color: "white",
+		fontSize: 18,
+		fontWeight: "bold"
 	}
-})
+});
 
-export default SignUp
+export default SignUp;

@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     padding: 20,
+		backgroundColor: '#161616',
   },
   sheetBackground: {
     borderTopLeftRadius: 16,
