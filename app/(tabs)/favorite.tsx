@@ -48,13 +48,14 @@ const styles = StyleSheet.create({
 		color: "orange",
 		fontSize: 40,
 		fontWeight: "bold"
-	}, searchBar: {
+	},
+	 searchBar: {
 		backgroundColor: "#2b2b2b",
 		height: 50,
 		maxWidth: 500,
 		width:"70%",
 		marginTop: 30,
-		borderRadius: 30,
+		borderRadius: 10,
 		paddingLeft: 20,
 		color: "orange",
 		position: "sticky"

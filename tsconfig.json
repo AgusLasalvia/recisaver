@@ -10,7 +10,10 @@
 				"./assets/*"
 			],
 			"@lib/*": [
-				"./lib/*"
+				"./util/*"
+			],
+			"@components/*": [
+				"./components/*"
 			]
 		}
 	},

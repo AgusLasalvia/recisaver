@@ -1,4 +1,4 @@
-import * as Interfaces from "@lib/interfaces"
+import * as Interfaces from "@/util/interfaces"
 
 export const LoginForm: Interfaces.ILogin = {
 	username: "",

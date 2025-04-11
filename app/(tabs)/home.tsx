@@ -1,7 +1,10 @@
 import RecipeItem from "@/components/RecipeItem"
 import { useState } from "react"
-import { StyleSheet, View, TextInput, ScrollView } from "react-native"
+import { StyleSheet, View, TextInput, ScrollView, Dimensions, Text } from "react-native"
+import CategorySlider from "@/components/Category/CategorySlider"
+import FadeInItem from "@/components/Animations/FadeInItem"
 
+const screenHeight = Dimensions.get('window').height
 
 // Delete this after DB implementation
 const food = [
@@ -10,7 +13,6 @@ const food = [
 	{ title: "Tomato Basil Pasta", img: require("@assets/images/food/salad.png"), id: 3 },
 	{ title: "pizza", img: require("@assets/images/food/pizza.png"), id: 1 },
 	{ title: "pasta", img: require("@assets/images/food/pasta.png"), id: 2 },
-
 ]
 
 
@@ -18,6 +20,7 @@ const food = [
 const HomePage = () => {
 
 	const [search, setSearch] = useState("")
+
 
 	return (
 		<ScrollView >
@@ -29,9 +32,15 @@ const HomePage = () => {
 					value={search}
 					onChangeText={(value: string) => { setSearch(value) }}
 				/>
-				{food.map((item, key) => {
-					return <RecipeItem title={item.title} img={item.img} id={item.id} key={key} />
-				})}
+				<Text style={styles.h1}>Categories</Text>
+				<CategorySlider />
+
+				<FadeInItem>
+					<Text style={styles.h1}>Popular</Text>
+				</FadeInItem>
+
+
+
 
 			</View>
 		</ScrollView>
@@ -44,20 +53,28 @@ const styles = StyleSheet.create({
 		backgroundColor: "#161616",
 		display: "flex",
 		alignItems: "center",
-		height: '100%',
+		height: screenHeight,
 		paddingBottom: 100
 	},
 	searchBar: {
 		backgroundColor: "#2b2b2b",
 		height: 50,
-		width:"70%",
+		width: "70%",
 		maxWidth: 500,
 		marginTop: 30,
-		borderRadius: 30,
+		borderRadius: 10,
 		paddingLeft: 20,
 		color: "orange",
-		position:"sticky"
+		position: "sticky"
 	},
+
+
+	h1: {
+		color: "orange",
+		width: "90%",
+		marginTop: 40,
+		fontSize: 30
+	}
 
 })
 

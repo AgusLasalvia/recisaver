@@ -1,20 +1,26 @@
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { TouchableOpacity, StyleSheet, View, Text, TextInput, Image } from "react-native";
-import { SignInForm } from "@/lib/forms";
+import { SignInForm } from "@/util/forms";
 import { useState } from "react";
-import { submitSignUp } from "@/lib/fetch";
-import FloatingImage from "@/components/Animations/FloatingImage";
+import { SignUpFetch } from "@/util/fetchConnector";
+
+import FloatingImage from "@components/Animations/FloatingImage";
 import GlobalView from "@/components/GlobalView";
-import CustomAlert from "@/components/Alert";
+import CustomAlert from "@/components/Notifications/Alert";
 
 const SignUp = () => {
+
+
 	const [form, setForm] = useState(SignInForm);
 	const [alertVisible, setAlertVisible] = useState(false);
 	const [alertMessage, setAlertMessage] = useState("");
 
 
+	const router = useRouter();
+
+
 	const handdleSubmit = async () => {
-		const response = await submitSignUp(form);
+		const response = await SignUpFetch(form);
 		if (response !== undefined) {
 			setAlertMessage("User Created Successfully");
 		} else {
@@ -25,6 +31,7 @@ const SignUp = () => {
 
 	return (
 		<GlobalView style={styles.mainContainer}>
+
 			<FloatingImage
 				source={require('@assets/images/signup.png')}
 				style={{ width: 250, height: 250, marginBottom: 30 }}
@@ -60,9 +67,11 @@ const SignUp = () => {
 				<Text style={styles.submitText}>Register</Text>
 			</TouchableOpacity>
 
-			<Link href={"/login"} style={styles.login}>
-				<Text>LogIn</Text>
-			</Link>
+			<TouchableOpacity
+				onPress={() => router.push("/login")}
+			>
+				<Text style={styles.login}>Log In</Text>
+			</TouchableOpacity>
 
 			<CustomAlert
 				visible={alertVisible}

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 		marginTop: 25,
 		width: "90%",
 		height: 130,
-		borderRadius: 30,
+		borderRadius: 10,
 		maxWidth: 450
 	},
 	itemContent: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 	img: {
 		width: 100,
 		height: 100, 
-		borderRadius: 50, 
+		borderRadius: 15, 
 		marginRight: 10
 	},
 	btnsContainer: {

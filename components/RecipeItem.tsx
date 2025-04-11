@@ -9,15 +9,14 @@ interface RecipeItemProp {
 
 const RecipeItem = (params: RecipeItemProp) => {
   return (
-    <View style={styles.contentContainer}>
-      <Image source={params.img} style={styles.img} />
-      <Text style={styles.title} numberOfLines={2}>{params.title}</Text>
-      <TouchableOpacity style={styles.details}>
-        <Link href={`/(tabs)/home?id=${params.id}`}>
-          <Text style={styles.text}>Details</Text>
-        </Link>
-      </TouchableOpacity>
-    </View>
+		// <Link href={`/recipe/${params.id}`} style={styles.contentContainer}>
+		// 	<Image source={params.img} style={styles.img} resizeMode="cover" />
+		// 	<Text style={styles.title} numberOfLines={1}>{params.title}</Text>
+		// 	{/* <TouchableOpacity style={styles.details}>
+		// 		<Text style={styles.text}>Details</Text>
+		// 	</TouchableOpacity> */}
+		// </Link>
+		<></>
   )
 };
 

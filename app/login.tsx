@@ -1,10 +1,10 @@
 import FloatingImage from "@/components/Animations/FloatingImage";
 import { useEffect, useRef, useState } from "react";
 import GlobalView from "@/components/GlobalView";
-import { submitLogin } from "@/lib/fetch";
+import { LoginFetch } from "@/util/fetchConnector";
 import { useRouter } from "expo-router";
-import { LoginForm } from "@/lib/forms";
-import CustomAlert from "@/components/Alert";
+import { LoginForm } from "@/util/forms";
+import CustomAlert from "@/components/Notifications/Alert";
 
 import {
 	TextInput, View, TouchableOpacity,
@@ -48,7 +48,7 @@ const Login = () => {
 
 	const handleLogin = async () => {
 		// Aquí puedes agregar lógica de autenticación
-		const response = await submitLogin(login);
+		const response = await LoginFetch(login);
 		console.log(response)
 		if (response == null) {
 			setAlertMessage("User Not Found");
