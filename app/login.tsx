@@ -49,7 +49,7 @@ const Login = () => {
 	const handleLogin = async () => {
 		// Aquí puedes agregar lógica de autenticación
 		const response = await LoginFetch(login);
-		console.log(response)
+
 		if (response == null) {
 			setAlertMessage("User Not Found");
 			setAlertVisible(true);

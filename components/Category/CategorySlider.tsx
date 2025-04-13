@@ -12,7 +12,7 @@ const CategorySlider = () => {
 			setCategories(await getCategories());
 		}
 		getAllCategories();
-	}, [])
+	}, []);
 
 	return (
 		<View style={{ height: 80 }}>

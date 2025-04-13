@@ -8,9 +8,10 @@ import Animated, {
 
 type Props = {
 	children: React.ReactNode;
+	style?: object;
 };
 
-const FadeInItem = ({ children }: Props) => {
+const FadeInItem = ({ children, style }: Props) => {
 	const opacity = useSharedValue(0);
 	const translateY = useSharedValue(10);
 
@@ -24,7 +25,7 @@ const FadeInItem = ({ children }: Props) => {
 		transform: [{ translateY: translateY.value }],
 	}));
 
-	return <Animated.View style={animatedStyle}>{children}</Animated.View>;
+	return <Animated.View style={[animatedStyle, style]}>{children}</Animated.View>;
 };
 
 export default FadeInItem;

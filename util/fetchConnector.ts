@@ -3,6 +3,7 @@ import * as Interface from "./interfaces"
 
 import { submitSignUp, submitLogin } from "./fetch/userFetch"
 import { GetAllCategories } from "./fetch/categoryFetch"
+import { getRecipeRecomendations } from "./fetch/recipeFetch"
 
 const { API_URL } = Constants.expoConfig?.extra as { API_URL: string }; // Aserción de tipo
 
@@ -21,7 +22,7 @@ export const getRecipeById = async (id: number) => { }
 
 export const getRecipeCreatedByUser = async (userId: number) => { }
 
-export const getDayRecomendationRecepie = async () => { }
+export const getDayRecomendationRecepie = async () => getRecipeRecomendations(API_URL);
 
 // Favorites Fetch
 
