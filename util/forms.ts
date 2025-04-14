@@ -17,7 +17,8 @@ export const RecipeForm: Interfaces.IRecipe = {
 	title: "",
 	description: "",
 	instructions: "",
-	file: {
+	category_id: 0,
+	image: {
 		imgUrl: "",
 		name: "",
 		type: ""

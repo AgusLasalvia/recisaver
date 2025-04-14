@@ -8,10 +8,11 @@ interface RecipeItemProp {
 }
 
 const FoodItem = (params: RecipeItemProp) => {
+	console.log(params.img)
 	return (
 		<TouchableOpacity key={params.id} style={styles.popularItem}>
 			<ImageBackground
-				source={params.img}
+				source={{ uri: params.img }}
 				resizeMode="cover"
 				style={styles.imageBackground}
 				imageStyle={{ borderRadius: 10 }}

@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Picker } from '@react-native-picker/picker';
+
 import { RecipeForm } from "@/util/forms";
 import { View, TouchableOpacity, Text, StyleSheet, Image, TextInput, ScrollView } from "react-native";
 import { type MediaType, launchImageLibraryAsync, requestMediaLibraryPermissionsAsync } from 'expo-image-picker';
+import { newRecipeFetch, getCategories } from "@/util/fetchConnector"; // Asumo que aquí tienes el fetch para enviar la receta
 
 const AddRecipePage = () => {
-	const [addForm, setAddForm] = useState(RecipeForm)
+	const [addForm, setAddForm] = useState(RecipeForm);
+	const [categories, setCategories] = useState([]);
+
+	console.log(addForm.category_id)
+
+	// Load Categories from server 
+	useEffect(() => {
+		const getAllCategories = async () => {
+			setCategories(await getCategories());
+		};
+
+		getAllCategories();
+	}, []);
 
 
-	const mediatype: MediaType = "images"
+	// Image Piker
+	const mediatype: MediaType = "images";
+
 	const pickImage = async () => {
-
 		const permissionResult = await requestMediaLibraryPermissionsAsync();
 		if (!permissionResult.granted) {
 			alert("Permission to access gallery is required!");
@@ -27,7 +43,7 @@ const AddRecipePage = () => {
 			const { uri, fileName, mimeType } = result.assets[0];
 			setAddForm((prevForm) => ({
 				...prevForm,
-				file: {
+				image: {
 					imgUrl: uri,
 					name: fileName || "unknown",
 					type: mimeType || "image/jpeg",
@@ -36,17 +52,33 @@ const AddRecipePage = () => {
 		}
 	};
 
+	const handleSubmit = async () => {
+		if (!addForm.title || !addForm.description || !addForm.instructions || !addForm.image?.imgUrl) {
+			alert("Please fill in all fields including the image.");
+			return;
+		}
+
+		const formData = new FormData();
+
+		formData.append('title', addForm.title);
+		formData.append('description', addForm.description);
+		formData.append('instructions', addForm.instructions);
+		formData.append('user_id', "1");
+		formData.append('category_id', String(addForm.category_id));
+		formData.append('image', {
+			uri: addForm.image.imgUrl,
+			type: addForm.image.type || 'image/jpeg',
+			name: addForm.image.name || 'photo.jpg',
+		} as any);
 
 
+		const response = await newRecipeFetch(formData);
 
-
-
-
+	};
 
 	return (
 		<ScrollView style={styles.scroll}>
 			<View style={styles.mainContainer}>
-
 				<View style={styles.inputContainer}>
 					<Text style={styles.h2}>Recipe Name</Text>
 					<TextInput
@@ -78,6 +110,19 @@ const AddRecipePage = () => {
 					/>
 				</View>
 
+				<View style={styles.container}>
+					<Picker
+						selectedValue={addForm.category_id}
+						onValueChange={(value: any) => { setAddForm({ ...addForm, category_id: value }) }}
+						style={styles.picker}
+					>
+						{categories.map(({ name, id }) => (
+							<Picker.Item key={id} label={name} value={id} />
+						))}
+
+					</Picker>
+				</View>
+
 				<View style={styles.inputContainer}>
 					<Text style={styles.h2}>Upload Image</Text>
 					<TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
@@ -86,21 +131,15 @@ const AddRecipePage = () => {
 
 					{/* Mostrar la imagen seleccionada */}
 					<View style={styles.imgContainer}>
-						{addForm.file.imgUrl && (
-							<Image source={{ uri: addForm.file.imgUrl }} style={styles.image} />
+						{addForm.image?.imgUrl && (
+							<Image source={{ uri: addForm.image.imgUrl }} style={styles.image} />
 						)}
 					</View>
 				</View>
 
-				<TouchableOpacity style={styles.submitBtn} onPress={()=>{}}>
+				<TouchableOpacity style={styles.submitBtn} onPress={handleSubmit}>
 					<Text style={styles.submitText}>Submit</Text>
 				</TouchableOpacity>
-
-				<View>
-					{/* <TouchableOpacity onPress={ }>
-					<Text style={styles.uploadButtonText}></Text>
-				</TouchableOpacity> */}
-				</View>
 			</View>
 		</ScrollView>
 	);
@@ -109,10 +148,6 @@ const AddRecipePage = () => {
 const styles = StyleSheet.create({
 	scroll: {
 		backgroundColor: "#161616",
-		// display: "flex",
-		// alignItems: "center",
-		// height: '100%',
-		// paddingBottom: 100
 	},
 	mainContainer: {
 		backgroundColor: "#161616",
@@ -186,6 +221,16 @@ const styles = StyleSheet.create({
 		color: "white",
 		fontSize: 23,
 		fontWeight: "bold"
+	},
+	container: {
+		margin: 20,
+		width: "90%",
+		backgroundColor: '#2b2b2b',
+		borderRadius: 10,
+	},
+	picker: {
+		color: 'white',
+		height: 50,
 	},
 });
 

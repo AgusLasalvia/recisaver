@@ -17,7 +17,7 @@ const FavoritePage = () => {
 					onChangeText={(value: string) => { setSearch(value) }}
 				/>
 				<Text style={styles.h1}>Favorites Recipes</Text>
-
+{/* 
 				<FavoriteItem title="Tomato Basil Soup" img={require('@assets/images/food/pasta.png')} id={1} />
 				<FavoriteItem title="Mixed Green Salad" img={require('@assets/images/food/pasta.png')} id={1} />
 				<FavoriteItem title="Tomato Basil Soup" img={require('@assets/images/food/pasta.png')} id={1} />
@@ -27,7 +27,7 @@ const FavoritePage = () => {
 				<FavoriteItem title="Pasta" img={require('@assets/images/food/pasta.png')} id={1} />
 				<FavoriteItem title="Pasta" img={require('@assets/images/food/pasta.png')} id={1} />
 				<FavoriteItem title="Pasta" img={require('@assets/images/food/pasta.png')} id={1} />
-				<FavoriteItem title="Pasta" img={require('@assets/images/food/pasta.png')} id={1} />
+				<FavoriteItem title="Pasta" img={require('@assets/images/food/pasta.png')} id={1} /> */}
 			</View>
 		</ScrollView>
 	)

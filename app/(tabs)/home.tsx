@@ -74,8 +74,8 @@ const HomePage = () => {
 					</View>
 
 					<View style={styles.popularGrid}>
-						{food.map(({ id, title, img }) => (
-							<FoodItem key={id} id={id} img={img} title={title} />
+						{food.map(({ id, title, img_url }) => (
+							<FoodItem key={id} id={id} img={img_url} title={title} />
 						))}
 					</View>
 				</FadeInItem>

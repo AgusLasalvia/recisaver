@@ -13,9 +13,10 @@ export interface IRecipe {
 	id: number | null,
 	user_id: number
 	title: string,
+	category_id: number,
 	description: string,
 	instructions: string,
-	file: {
+	image: {
 		imgUrl: string,
 		name: string,
 		type: string
